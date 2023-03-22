@@ -8,6 +8,24 @@
 
 using namespace std;
 
+// pseudocode for now
+/*void dij(g, v){
+	frontier = []
+	marked = {}
+	frontier.push({0, v, v})
+
+	while not frontier.empty():
+		v = frontier.pop()
+
+		if v.name in marked:
+			continue
+
+		maked[v.name] = v.prev
+		for u in g.edges[v.name]:
+			frontier.push((u.cost + v.cost, u.name, v.name))
+		print result of computation
+}*/
+
 int main(int argc, char *argv[]) {
 	
 	int ntiles, tcost, r, c;
