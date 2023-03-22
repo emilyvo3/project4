@@ -2,15 +2,31 @@
 
 // Main Execution
 
-#include<iostream>
-#include<map>
-#include<vector>
+#include <iostream>
+#include <list>
+#include <map>
+#include <vector>
+#include <algorithm>
+
 
 using namespace std;
 
+//we need multimap for our "frontier"
+//and a list that stores the back links
+//make a separate function which only does recurssion so that we dont mess up initialization of back-links
+//so we have two functions: dij and path
+
+//recurssive function that will return the shortest cost
+int path(){
+
+}
+
 // pseudocode for now
-/*void dij(g, v){
-	frontier = []
+void dij(vector<vector<int>>& board,  /*g, v*/){
+	list <int> backlink(-1); 
+	vector<bool> visited(false);
+
+/*	frontier = []
 	marked = {}
 	frontier.push({0, v, v})
 
@@ -23,8 +39,8 @@ using namespace std;
 		maked[v.name] = v.prev
 		for u in g.edges[v.name]:
 			frontier.push((u.cost + v.cost, u.name, v.name))
-		print result of computation
-}*/
+		print result of computation*/
+}
 
 int main(int argc, char *argv[]) {
 	
