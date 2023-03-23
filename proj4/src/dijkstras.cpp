@@ -22,7 +22,7 @@ int path(){
 }
 
 // pseudocode for now
-void dij(vector<vector<int>>& board,  /*g, v*/){
+void dij(vector<vector<int>>& board, int &c1, int &c2, int &e1, int &e2, int r){
 	list <int> backlink(-1); 
 	vector<bool> visited(false);
 
