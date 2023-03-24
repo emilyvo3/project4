@@ -17,15 +17,13 @@ using namespace std;
 //so we have two functions: dij and path
 
 //recurssive function that will return the shortest cost
-int path(){
 
-}
 
 // pseudocode for now
 void dij(vector<vector<int>>& board, int &c1, int &c2, int &e1, int &e2, int r){
 	list <int> backlink(-1); 
 	vector<bool> visited(false);
-
+	multimap<int, <int, int>> frontier;
 /*	frontier = []
 	marked = {}
 	frontier.push({0, v, v})
@@ -49,8 +47,8 @@ int main(int argc, char *argv[]) {
 	//map<char, int> tiles;
 	//map<char, int>::iterator it;
 
-	vector<vector<int>> board;
-	vector<int> col;
+	vector<int> board;
+//	vector<int> col;
 	char input;
 	int value;
 
@@ -62,7 +60,7 @@ int main(int argc, char *argv[]) {
 	    map<char, int>::iterator it;
 		
 		board.clear();
-		col.clear();
+//		col.clear();
 
 		//reading in tile names and costs
 		for(int i = 0; i < ntiles; i++){
@@ -81,11 +79,11 @@ int main(int argc, char *argv[]) {
 				cin>>input;
 				it = tiles.find(input);
 				value = it->second;
-				col.push_back(value);
+				board.push_back(value);
 			}
 
-			board.push_back(col);
-			col.clear();
+//			board.push_back(col);
+//			col.clear();
 
 		}
 		
