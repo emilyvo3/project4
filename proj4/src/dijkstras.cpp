@@ -25,7 +25,26 @@ void dij(vector<int>& board, int &start, int &end, int &r){
 	vector <int> distances((r * r), -1);
 	vector<bool> visited((r * r), false);
 	multimap<int, int> frontier;
+	multimap<int, int>::iterator it;
 
+
+	
+	distances[0] = 0;
+	frontier.insert(make_pair(distances[0], start));
+	visited[0] = true;
+
+	while(!frontier.empty()){
+		it = frontier.begin();
+
+		int cost = it->first;
+		int pos = it->second;
+
+		frontier.erase(it);
+
+		if(visited[..] != false){
+		
+		}
+	
 
 /*	frontier = []
 	marked = {}
@@ -41,6 +60,7 @@ void dij(vector<int>& board, int &start, int &end, int &r){
 		for u in g.edges[v.name]:
 			frontier.push((u.cost + v.cost, u.name, v.name))
 		print result of computation*/
+	}	
 }
 
 int main(int argc, char *argv[]) {
@@ -115,6 +135,7 @@ int main(int argc, char *argv[]) {
 		start = (c2 * c) + c1;
 		end = (e2 * c) + e1;
 
+//		cout<<start<<" "<<end<<endl;
 		dij(board, start, end, r);
 
 
