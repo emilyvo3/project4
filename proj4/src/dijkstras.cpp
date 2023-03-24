@@ -136,6 +136,42 @@ int main(int argc, char *argv[]) {
 		end = (e2 * c) + e1;
 
 //		cout<<start<<" "<<end<<endl;
+		 int x,y;
+		 vector<vector<int>> edges;
+		 vector<int> index;
+
+
+		for(int i = 0; i < r * c; i++){
+			x = i / r;
+			y = i % r;
+			
+			//checking for the 4 corners ONLY
+			//will have 2 edges
+			if( (y == 0 && ((x % r) == 0)) || (y == (r - 1) && (((x ) % r) == 0))){
+				index.push_back(board[i + 1]);
+				index.push_back(board[i + c]);
+			}
+
+			//check for the remaining elements on borders
+			//will have 3 edges
+			else if(){
+				 index.push_back(board[i + 1]);
+                 index.push_back(board[i + c]);
+				 index.push_back(board[i - 1]);
+			
+			}
+
+			//check for remaining elements
+			//will have 4 edges
+ 			else{
+				index.push_back(board[i + 1]);
+                index.push_back(board[i + c]);
+                index.push_back(board[i - 1]);
+				index.push_back(board[i - c]);
+
+			}
+		}
+		
 		dij(board, start, end, r);
 
 
