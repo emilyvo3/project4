@@ -20,10 +20,11 @@ using namespace std;
 
 
 // pseudocode for now
-void dij(vector<vector<int>>& board, int &c1, int &c2, int &e1, int &e2, int r){
-	list <int> backlink(-1); 
-	vector<bool> visited(false);
-	multimap<int, <int, int>> frontier;
+void dij(vector<int>& board, int &c1, int &c2, int &e1, int &e2, int r){
+	vector <int> backlink((r * r), -1); 
+	vector <int> distances((r * r), -1);
+	vector<bool> visited((r * r), false);
+//	multimap<int, <int, int>> frontier;
 /*	frontier = []
 	marked = {}
 	frontier.push({0, v, v})
@@ -98,9 +99,9 @@ int main(int argc, char *argv[]) {
 			cout<<i->first<<" "<<i->second<<endl;
 		}
 		cout<<r<<" "<<c<<endl;
-		for(int i = 0; i < r; i++){
-			for(int j = 0; j < c; j++){
-				cout<<board[i][j]<<" ";
+		for(int i = 0; i < r * c; ){
+			for(int j = 0; j < c; i++, j++){
+				cout<<board[i]<<" ";
 			}
 			cout<<endl;
 		}
