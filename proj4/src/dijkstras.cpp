@@ -41,9 +41,14 @@ void dij(vector<int>& board, int &start, int &end, int &r){
 
 		frontier.erase(it);
 
-		if(visited[..] != false){
+		/*if(visited[..] != false){
 		
+		}*/
+		if (visited[pos])
+		{
+			continue;
 		}
+		visited[pos] = true;
 	
 
 /*	frontier = []
@@ -147,19 +152,35 @@ int main(int argc, char *argv[]) {
 			
 			//checking for the 4 corners ONLY
 			//will have 2 edges
-			if( (y == 0 && ((x % r) == 0)) || (y == (r - 1) && (((x ) % r) == 0))){
+			//if( (y == 0 && ((x % r) == 0)) || (y == (r - 1) && (((x ) % r) == 0))){
+			if( (y == 0 && x == 0) || (y == 0 && x == c - 1) || (y == r - 1 && x == 0) || (y == r - 1 && x == c - 1)){
 				index.push_back(board[i + 1]);
 				index.push_back(board[i + c]);
 			}
 
-			//check for the remaining elements on borders
+			//check the elements adjacent to the corners
 			//will have 3 edges
-			else if(){
-				 index.push_back(board[i + 1]);
+			else if((y == 0 && x == 0) || (y == 0 && x == c - 1) || (y == r - 1 && x == 0) || (y == r - 1 && x == c - 1)){
+				 /*index.push_back(board[i + 1]);
                  index.push_back(board[i + c]);
-				 index.push_back(board[i - 1]);
-			
-			}
+				 index.push_back(board[i - 1]);*/
+				if (y == 0 && x == 0){
+        		index.push_back(board[i + 1]);
+        		index.push_back(board[i + c]);
+    		}
+    			else if (y == 0 && x == c - 1){
+        		index.push_back(board[i - 1]);
+        		index.push_back(board[i + c]);
+    		}
+    			else if (y == r - 1 && x == 0){
+        		index.push_back(board[i + 1]);
+       			index.push_back(board[i - c]);
+    		}
+    			else if (y == r - 1 && x == c - 1){
+        		index.push_back(board[i - 1]);
+        		index.push_back(board[i - c]);
+    		}
+		}
 
 			//check for remaining elements
 			//will have 4 edges
@@ -168,7 +189,6 @@ int main(int argc, char *argv[]) {
                 index.push_back(board[i + c]);
                 index.push_back(board[i - 1]);
 				index.push_back(board[i - c]);
-
 			}
 		}
 		
