@@ -32,7 +32,7 @@ void dij(vector<int>& board, vector< vector<int>>& edges, int &start, int &end, 
 	while(!frontier.empty()){
 		it = frontier.begin();
 
-		int cost = it->first;
+		//int cost = it->first;
 		int pos = it->second;
 
 		frontier.erase(it);
@@ -51,6 +51,8 @@ void dij(vector<int>& board, vector< vector<int>>& edges, int &start, int &end, 
 		// for each neighbor of the current vertex, update its distance and add it to the frontier
 		for (int i = 0; i < (r * r); i++)
 		{
+			//int neighbor = i * r + pos / r; // calculate neighbor index;
+
 			if (board[(pos * r * r) + i] == -1)
 			{
 				continue; // skip vertices that are not connected
@@ -71,9 +73,7 @@ void dij(vector<int>& board, vector< vector<int>>& edges, int &start, int &end, 
 				frontier.insert(make_pair(distances[neighbor], neighbor)); // add the neighbor to the frontier
 			}
 		}
-		
-
-		cout<<distances[end]<<endl;
+		//cout<<distances[end]<<endl;
 /*	frontier = []
 	marked = {}
 	frontier.push({0, v, v})
@@ -88,27 +88,35 @@ void dij(vector<int>& board, vector< vector<int>>& edges, int &start, int &end, 
 		for u in g.edges[v.name]:
 			frontier.push((u.cost + v.cost, u.name, v.name))
 		print result of computation*/
-	}	
-}
-
-void path(vector<int>& board, int &start, int &end, int &r)
-{
-	vector <int> backlink((r * r), -1); 
-	vector <int> distances((r * r), -1);
-	//vector<bool> visited((r * r), false);
-	vector <int> path_tiles;
-
-	int current = end; // set the end tile as the current tile
-
-	// traverse the game board backwards from the end to start tile
-	while (current != start)
-	{
-		path_tiles.push_back(current); // add the current tile to the path
-		current = backlink[current]; // move to the tile that led to the current tile in the shortest path
 	}
 
-	path_tiles.push_back(start); // add the start tile to the path
-	reverse(path_tiles.begin(), path_tiles.end()); // reverse the path to obtain the correct order
+		/*if (distances[end] == -1)
+		{
+			cout << "no path found\n";
+			return;
+		}*/
+
+		cout<<distances[end]<<endl;
+
+		vector <int> path_tiles;
+		int current = end; // set the end tile as the current tile
+
+		// traverse the game board backwards from the end to start tile
+		while (current != start)
+		{
+			path_tiles.push_back(current); // add the current tile to the path
+			current = backlink[current]; // move to the tile that led to the current tile in the shortest path
+		}
+
+		path_tiles.push_back(start); // add the start tile to the path
+		reverse(path_tiles.begin(), path_tiles.end()); // reverse the path to obtain the correct order
+
+		for (int i = 0; i < (int)path_tiles.size(); i++)
+		{
+			int row = path_tiles[i] / r;
+			int col = path_tiles[i] % r;
+			cout << row << " " << col << endl;
+		}
 }
 
 int main(int argc, char *argv[]) {
@@ -117,7 +125,6 @@ int main(int argc, char *argv[]) {
 	char nametile;
 	//map<char, int> tiles;
 	//map<char, int>::iterator it;
-
 	vector<int> board;
 //	vector<int> col;
 	char input;
