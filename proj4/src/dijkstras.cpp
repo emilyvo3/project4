@@ -7,17 +7,13 @@
 #include <map>
 #include <vector>
 #include <algorithm>
-
-
 using namespace std;
 
 //we need multimap for our "frontier"
 //and a list that stores the back links
 //make a separate function which only does recurssion so that we dont mess up initialization of back-links
 //so we have two functions: dij and path
-
 //recurssive function that will return the shortest cost
-
 
 // pseudocode for now
 void dij(vector<int>& board, int &start, int &end, int &r){
@@ -26,12 +22,12 @@ void dij(vector<int>& board, int &start, int &end, int &r){
 	vector<bool> visited((r * r), false);
 	multimap<int, int> frontier;
 	multimap<int, int>::iterator it;
-
-
 	
-	distances[0] = 0;
+	/*distances[0] = 0;
 	frontier.insert(make_pair(distances[0], start));
-	visited[0] = true;
+	visited[0] = true;*/
+	distances[start] = 0;
+	frontier.insert(make_pair(distances[start], start));
 
 	while(!frontier.empty()){
 		it = frontier.begin();
@@ -44,13 +40,38 @@ void dij(vector<int>& board, int &start, int &end, int &r){
 		/*if(visited[..] != false){
 		
 		}*/
+
+		// if the vertex has already been isited, continue to the next vertex
 		if (visited[pos])
 		{
 			continue;
 		}
 		visited[pos] = true;
-	
 
+		// for each neighbor of the current vertex, update its distance and add it to the frontier
+		for (int i = 0; i < (r * r); i++)
+		{
+			if (board[(pos * r * r) + i] == -1)
+			{
+				continue; // skip vertices that are not connected
+			}
+			int neighbor = i;
+
+			if (visited[neighbor])
+			{
+				continue; // skip vertices that have already been visited
+			}
+			int new_distance = distances[pos] + board[(pos * r * r) + i]; // calculate new distance
+
+			// if the new distance is shorter than the current distance to the neighbor vertex, update its distance
+			if (distances[neighbor] == -1 || new_distance < distances[neighbor])
+			{
+				distances[neighbor] = new_distance;
+				backlink[neighbor] = pos;
+				frontier.insert(make_pair(distances[neighbor], neighbor)); // add the neighbor to the frontier
+			}
+		}
+	
 /*	frontier = []
 	marked = {}
 	frontier.push({0, v, v})
@@ -66,6 +87,26 @@ void dij(vector<int>& board, int &start, int &end, int &r){
 			frontier.push((u.cost + v.cost, u.name, v.name))
 		print result of computation*/
 	}	
+}
+
+void path(vector<int>& board, int &start, int &end, int &r)
+{
+	vector <int> backlink((r * r), -1); 
+	vector <int> distances((r * r), -1);
+	//vector<bool> visited((r * r), false);
+	vector <int> path_tiles;
+
+	int current = end; // set the end tile as the current tile
+
+	// traverse the game board backwards from the end to start tile
+	while (current != start)
+	{
+		path_tiles.push_back(current); // add the current tile to the path
+		current = backlink[current]; // move to the tile that led to the current tile in the shortest path
+	}
+
+	path_tiles.push_back(start); // add the start tile to the path
+	reverse(path_tiles.begin(), path_tiles.end()); // reverse the path to obtain the correct order
 }
 
 int main(int argc, char *argv[]) {
@@ -111,10 +152,8 @@ int main(int argc, char *argv[]) {
 				value = it->second;
 				board.push_back(value);
 			}
-
 //			board.push_back(col);
 //			col.clear();
-
 		}
 		
 		//reading in start(or current) and end points
@@ -144,7 +183,6 @@ int main(int argc, char *argv[]) {
 		 int x,y;
 		 vector<vector<int>> edges;
 		 vector<int> index;
-
 
 		for(int i = 0; i < r * c; i++){
 			x = i / r;
@@ -191,15 +229,8 @@ int main(int argc, char *argv[]) {
 				index.push_back(board[i - c]);
 			}
 		}
-		
 		dij(board, start, end, r);
-
-
-
-        
-
 	}
-
 	return 0;
 }
 
