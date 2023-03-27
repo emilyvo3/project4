@@ -71,7 +71,9 @@ void dij(vector<int>& board, int &start, int &end, int &r){
 				frontier.insert(make_pair(distances[neighbor], neighbor)); // add the neighbor to the frontier
 			}
 		}
-	
+		
+
+//		cout<<distances[end]<<endl;
 /*	frontier = []
 	marked = {}
 	frontier.push({0, v, v})
@@ -180,7 +182,7 @@ int main(int argc, char *argv[]) {
 		end = (e2 * c) + e1;
 
 //		cout<<start<<" "<<end<<endl;
-/*		int x,y;
+		int x,y;
 		vector<vector<int>> edges;
 		vector<int> index;
 
@@ -197,29 +199,46 @@ int main(int argc, char *argv[]) {
 			if( (y == 0 && x == 0) || (y == 0 && x == c - 1) || (y == r - 1 && x == 0) || (y == r - 1 && x == c - 1)){
 				index.push_back(board[i + 1]);
 				index.push_back(board[i + c]);
+				index.push_back(-1);
+				index.push_back(-1);
+
 			}
 
 			//check the elements adjacent to the corners
 			//will have 3 edges
-			else if((y == 0 && x == 0) || (y == 0 && x == c - 1) || (y == r - 1 && x == 0) || (y == r - 1 && x == c - 1)){*/
+			else if((y == 0 /*&& x == 0*/) || (/*y == 0 &&*/ x == 0) || (y == r - 1/* && x == 0*/) || (y == r - 1 && x == c - 1)){
 				 /*index.push_back(board[i + 1]);
                  index.push_back(board[i + c]);
 				 index.push_back(board[i - 1]);*/
-/*				if (y == 0 && x == 0){
+				if (y == 0 /*&& x == 0*/){
 		    		index.push_back(board[i + 1]);
 					index.push_back(board[i + c]);
+					index.push_back(board[i - c]);
+					index.push_back(-1);
+
+
 	    		}
-    			else if (y == 0 && x == c - 1){
+    			else if (x == 0/* && x == c - 1*/){
 	        		index.push_back(board[i - 1]);
+					index.push_back(board[i + 1]);
 		    		index.push_back(board[i + c]);
+					index.push_back(-1);
+
 				}
-				else if (y == r - 1 && x == 0){
+				else if (y == r - 1 /*&& x == 0*/){
+					index.push_back(board[i - 1]);
+					index.push_back(board[i - c]);
+					index.push_back(board[i + c]);
+					index.push_back(-1);
+
+
+	    		}
+    			else if (/*y == r - 1 &&*/ x == c - 1){
+		    		index.push_back(board[i - 1]);
 					index.push_back(board[i + 1]);
 					index.push_back(board[i - c]);
-	    		}
-    			else if (y == r - 1 && x == c - 1){
-		    		index.push_back(board[i - 1]);
-					index.push_back(board[i - c]);
+					index.push_back(-1);
+
 				}
 			}
 
@@ -234,8 +253,17 @@ int main(int argc, char *argv[]) {
 
 			edges.push_back(index);
 			index.clear();
-		}*/
-		dij(board, start, end, r);
+		}
+		
+		for(int i = 0; i < (int) edges.size(); i++){
+			cout<<"Index "<<i<<" has these edges: ";
+			for(int j = 0; j < (int) edges[i].size(); j++){
+				cout<<edges[i][j]<<endl;
+			}
+			cout<<endl;
+		}
+
+//dij(board, start, end, r);
 	}
 	return 0;
 }
