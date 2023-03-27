@@ -16,7 +16,7 @@ using namespace std;
 //recurssive function that will return the shortest cost
 
 // pseudocode for now
-void dij(vector<int>& board, int &start, int &end, int &r){
+void dij(vector<int>& board, vector< vector<int>>& edges, int &start, int &end, int &r){
 	vector <int> backlink((r * r), -1); 
 	vector <int> distances((r * r), -1);
 	vector<bool> visited((r * r), false);
@@ -73,7 +73,7 @@ void dij(vector<int>& board, int &start, int &end, int &r){
 		}
 		
 
-//		cout<<distances[end]<<endl;
+		cout<<distances[end]<<endl;
 /*	frontier = []
 	marked = {}
 	frontier.push({0, v, v})
@@ -255,15 +255,15 @@ int main(int argc, char *argv[]) {
 			index.clear();
 		}
 		
-		for(int i = 0; i < (int) edges.size(); i++){
+/*		for(int i = 0; i < (int) edges.size(); i++){
 			cout<<"Index "<<i<<" has these edges: ";
 			for(int j = 0; j < (int) edges[i].size(); j++){
 				cout<<edges[i][j]<<endl;
 			}
 			cout<<endl;
-		}
+		}*/
 
-//dij(board, start, end, r);
+		dij(board, edges, start, end, r);
 	}
 	return 0;
 }
