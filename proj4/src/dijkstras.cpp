@@ -180,9 +180,12 @@ int main(int argc, char *argv[]) {
 		end = (e2 * c) + e1;
 
 //		cout<<start<<" "<<end<<endl;
-		 int x,y;
-		 vector<vector<int>> edges;
-		 vector<int> index;
+/*		int x,y;
+		vector<vector<int>> edges;
+		vector<int> index;
+
+		edges.clear();
+		index.clear();
 
 		for(int i = 0; i < r * c; i++){
 			x = i / r;
@@ -198,27 +201,27 @@ int main(int argc, char *argv[]) {
 
 			//check the elements adjacent to the corners
 			//will have 3 edges
-			else if((y == 0 && x == 0) || (y == 0 && x == c - 1) || (y == r - 1 && x == 0) || (y == r - 1 && x == c - 1)){
+			else if((y == 0 && x == 0) || (y == 0 && x == c - 1) || (y == r - 1 && x == 0) || (y == r - 1 && x == c - 1)){*/
 				 /*index.push_back(board[i + 1]);
                  index.push_back(board[i + c]);
 				 index.push_back(board[i - 1]);*/
-				if (y == 0 && x == 0){
-        		index.push_back(board[i + 1]);
-        		index.push_back(board[i + c]);
-    		}
+/*				if (y == 0 && x == 0){
+		    		index.push_back(board[i + 1]);
+					index.push_back(board[i + c]);
+	    		}
     			else if (y == 0 && x == c - 1){
-        		index.push_back(board[i - 1]);
-        		index.push_back(board[i + c]);
-    		}
-    			else if (y == r - 1 && x == 0){
-        		index.push_back(board[i + 1]);
-       			index.push_back(board[i - c]);
-    		}
+	        		index.push_back(board[i - 1]);
+		    		index.push_back(board[i + c]);
+				}
+				else if (y == r - 1 && x == 0){
+					index.push_back(board[i + 1]);
+					index.push_back(board[i - c]);
+	    		}
     			else if (y == r - 1 && x == c - 1){
-        		index.push_back(board[i - 1]);
-        		index.push_back(board[i - c]);
-    		}
-		}
+		    		index.push_back(board[i - 1]);
+					index.push_back(board[i - c]);
+				}
+			}
 
 			//check for remaining elements
 			//will have 4 edges
@@ -228,7 +231,10 @@ int main(int argc, char *argv[]) {
                 index.push_back(board[i - 1]);
 				index.push_back(board[i - c]);
 			}
-		}
+
+			edges.push_back(index);
+			index.clear();
+		}*/
 		dij(board, start, end, r);
 	}
 	return 0;
