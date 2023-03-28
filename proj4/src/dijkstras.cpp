@@ -3,6 +3,7 @@
 // Main Execution
 
 #include <iostream>
+#include <climits>
 #include <list>
 #include <map>
 #include <vector>
@@ -18,22 +19,24 @@ using namespace std;
 // pseudocode for now
 void dij(vector<int>& board, vector< vector<int>>& edges, int &start, int &end, int &r){
 	vector <int> backlink((r * r), -1); 
-	vector <int> costs((r * r), -1);
-	vector<bool> visited((r * r), false);
+	vector <int> costs((r * r), INT_MAX);
+//	vector<bool> visited((r * r), false);
 	multimap<int, int> frontier;
 	multimap<int, int>::iterator it;
 	
 	/*distances[0] = 0;
 	frontier.insert(make_pair(distances[0], start));
 	visited[0] = true;*/
-	costs[start] = 0;
-	frontier.insert(make_pair(costs[start], start));
+//	costs[start] = 0;
+	frontier.insert(make_pair(0, start));
+
+	int new_dist, cost, pos;
 
 	while(!frontier.empty()){
 		it = frontier.begin();
 
-		//int cost = it->first;
-		int pos = it->second;
+		cost = it->first;
+		pos = it->second;
 
 		frontier.erase(it);
 
@@ -42,37 +45,60 @@ void dij(vector<int>& board, vector< vector<int>>& edges, int &start, int &end, 
 		}*/
 
 		// if the vertex has already been isited, continue to the next vertex
-		if (visited[pos])
+/*		if (visited[pos])
 		{
 			continue;
 		}
-		visited[pos] = true;
+		visited[pos] = true;*/
 
 		// for each neighbor of the current vertex, update its distance and add it to the frontier
-		for (int i = 0; i < (r * r); i++)
-		{
+//		for (int i = 0; i < (r * r); i++)
+//		{
 			//int neighbor = i * r + pos / r; // calculate neighbor index;
 
-			if (/*board[(pos * r * r) + i] == -1*/ (i + 1) % r == 0)
-			{
+//			if (/*bard[(pos * r * r) + i] == -1*/ (i + 1) % r == 0)
+/*			{
 				continue; // skip vertices that are not connected
-			}
-			int neighbor = i;
+			}*/
+/*			int neighbor = i;
 
 			if (visited[neighbor])
 			{
 				continue; // skip vertices that have already been visited
-			}
-			int new_distance = costs[pos] + board[/*(pos * r * r) +*/ i]; // calculate new distance
+			}*/
+//			int new_distance = costs[pos] + board[/*(pos * r * r) +*/ i]; // calculate new distance
 
 			// if the new distance is shorter than the current distance to the neighbor vertex, update its distance
-			if (costs[neighbor] == -1 || new_distance < costs[neighbor])
-			{
-				costs[neighbor] = new_distance;
-				backlink[neighbor] = pos;
-				frontier.insert(make_pair(costs[neighbor], neighbor)); // add the neighbor to the frontier
+		
+//			new_dist = 0;
+		if(pos != end){
+			for(int j = 0; j < (int) edges[pos].size(); j++){
+				if(board[(pos * r + j)] < costs[pos]){
+					costs[pos] = cost;					
+					backlink[(pos * r + j)] = pos;
+					new_dist = cost + board[pos/*(pos * r + j)*/];
+					frontier.insert(make_pair(new_dist, (pos * r + j))); // add the neighbor to the frontier
+
+				}
 			}
-		}
+		}	
+
+//				for(int k = 0; k < r; k++){
+
+				
+/*				if(edges[pos][j] == -1){
+						continue;
+					}
+//					int new_distance = costs[pos] + board[(pos * r * r) + i];
+					if (costs[neighbor] == -1 || new_distance < costs[neighbor])
+					{
+						costs[neighbor] = new_distance;
+						backlink[neighbor] = pos;
+						frontier.insert(make_pair(costs[neighbor], neighbor)); // add the neighbor to the frontier
+					}
+//				}*/
+				
+//		}
 		//cout<<distances[end]<<endl;
 /*	frontier = []
 	marked = {}
@@ -96,7 +122,9 @@ void dij(vector<int>& board, vector< vector<int>>& edges, int &start, int &end, 
 			return;
 		}*/
 
-		cout<<costs[end]<<endl;
+//		cout<<costs[end]<<endl;
+
+		cout<<new_dist<<endl;	
 
 		vector <int> path_tiles;
 		int current = end; // set the end tile as the current tile
@@ -204,10 +232,10 @@ int main(int argc, char *argv[]) {
 			//will have 2 edges
 			//if( (y == 0 && ((x % r) == 0)) || (y == (r - 1) && (((x ) % r) == 0))){
 			if( (y == 0 && x == 0) || (y == 0 && x == c - 1) || (y == r - 1 && x == 0) || (y == r - 1 && x == c - 1)){
-				index.push_back(board[i + 1]);
-				index.push_back(board[i + c]);
-				index.push_back(-1);
-				index.push_back(-1);
+				index.push_back(i + 1);
+				index.push_back(i + c);
+//				index.push_back(-1);
+//				index.push_back(-1);
 
 			}
 
@@ -218,33 +246,33 @@ int main(int argc, char *argv[]) {
                  index.push_back(board[i + c]);
 				 index.push_back(board[i - 1]);*/
 				if (y == 0 /*&& x == 0*/){
-		    		index.push_back(board[i + 1]);
-					index.push_back(board[i + c]);
-					index.push_back(board[i - c]);
-					index.push_back(-1);
+		    		index.push_back(i + 1);
+					index.push_back(i + c);
+					index.push_back(i - c);
+//					index.push_back(-1);
 
 
 	    		}
     			else if (x == 0/* && x == c - 1*/){
-	        		index.push_back(board[i - 1]);
-					index.push_back(board[i + 1]);
-		    		index.push_back(board[i + c]);
-					index.push_back(-1);
+	        		index.push_back(i - 1);
+					index.push_back(i + 1);
+		    		index.push_back(i + c);
+//					index.push_back(-1);
 
 				}
 				else if (y == r - 1 /*&& x == 0*/){
-					index.push_back(board[i - 1]);
-					index.push_back(board[i - c]);
-					index.push_back(board[i + c]);
-					index.push_back(-1);
+					index.push_back(i - 1);
+					index.push_back(i - c);
+					index.push_back(i + c);
+//					index.push_back(-1);
 
 
 	    		}
     			else if (/*y == r - 1 &&*/ x == c - 1){
-		    		index.push_back(board[i - 1]);
-					index.push_back(board[i + 1]);
-					index.push_back(board[i - c]);
-					index.push_back(-1);
+		    		index.push_back(i - 1);
+					index.push_back(i + 1);
+					index.push_back(i - c);
+//					index.push_back(-1);
 
 				}
 			}
@@ -252,10 +280,10 @@ int main(int argc, char *argv[]) {
 			//check for remaining elements
 			//will have 4 edges
  			else{
-				index.push_back(board[i + 1]);
-                index.push_back(board[i + c]);
-                index.push_back(board[i - 1]);
-				index.push_back(board[i - c]);
+				index.push_back(i + 1);
+                index.push_back(i + c);
+                index.push_back(i - 1);
+				index.push_back(i - c);
 			}
 
 			edges.push_back(index);
