@@ -18,7 +18,7 @@ using namespace std;
 // pseudocode for now
 void dij(vector<int>& board, vector< vector<int>>& edges, int &start, int &end, int &r){
 	vector <int> backlink((r * r), -1); 
-	vector <int> distances((r * r), -1);
+	vector <int> costs((r * r), -1);
 	vector<bool> visited((r * r), false);
 	multimap<int, int> frontier;
 	multimap<int, int>::iterator it;
@@ -26,8 +26,8 @@ void dij(vector<int>& board, vector< vector<int>>& edges, int &start, int &end, 
 	/*distances[0] = 0;
 	frontier.insert(make_pair(distances[0], start));
 	visited[0] = true;*/
-	distances[start] = 0;
-	frontier.insert(make_pair(distances[start], start));
+	costs[start] = 0;
+	frontier.insert(make_pair(costs[start], start));
 
 	while(!frontier.empty()){
 		it = frontier.begin();
@@ -53,7 +53,7 @@ void dij(vector<int>& board, vector< vector<int>>& edges, int &start, int &end, 
 		{
 			//int neighbor = i * r + pos / r; // calculate neighbor index;
 
-			if (board[(pos * r * r) + i] == -1)
+			if (/*board[(pos * r * r) + i] == -1*/ (i + 1) % r == 0)
 			{
 				continue; // skip vertices that are not connected
 			}
@@ -63,14 +63,14 @@ void dij(vector<int>& board, vector< vector<int>>& edges, int &start, int &end, 
 			{
 				continue; // skip vertices that have already been visited
 			}
-			int new_distance = distances[pos] + board[(pos * r * r) + i]; // calculate new distance
+			int new_distance = costs[pos] + board[/*(pos * r * r) +*/ i]; // calculate new distance
 
 			// if the new distance is shorter than the current distance to the neighbor vertex, update its distance
-			if (distances[neighbor] == -1 || new_distance < distances[neighbor])
+			if (costs[neighbor] == -1 || new_distance < costs[neighbor])
 			{
-				distances[neighbor] = new_distance;
+				costs[neighbor] = new_distance;
 				backlink[neighbor] = pos;
-				frontier.insert(make_pair(distances[neighbor], neighbor)); // add the neighbor to the frontier
+				frontier.insert(make_pair(costs[neighbor], neighbor)); // add the neighbor to the frontier
 			}
 		}
 		//cout<<distances[end]<<endl;
@@ -96,7 +96,7 @@ void dij(vector<int>& board, vector< vector<int>>& edges, int &start, int &end, 
 			return;
 		}*/
 
-		cout<<distances[end]<<endl;
+		cout<<costs[end]<<endl;
 
 		vector <int> path_tiles;
 		int current = end; // set the end tile as the current tile
