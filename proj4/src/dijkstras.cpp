@@ -75,10 +75,12 @@ void dij(vector<int>& board, vector< vector<int>>& edges, int &start, int &end, 
 			for(int j = 0; j < (int) edges[pos].size(); j++){
 //				int curr = (pos * r) + j;
 				int curr = edges[pos][j];
-				if(cost < costs[curr] && curr != end){
+				new_dist = cost + board[pos];
+
+				if(new_dist < cost && curr != end){
 //					costs[curr] = cost;					
 					backlink[curr] = pos;
-					new_dist = cost + board[pos];
+//					new_dist = cost + board[pos];
 					costs[curr] = new_dist;
 					frontier.insert(make_pair(new_dist, curr)); // add the neighbor to the frontier
 
