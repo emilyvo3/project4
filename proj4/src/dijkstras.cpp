@@ -1,5 +1,4 @@
-// dijsktras.cpp
-
+// dijsktras.cpp 
 // Main Execution
 
 #include <iostream>
@@ -34,7 +33,7 @@ void dij(vector<int>& board, vector< vector<int>>& edges, int &start, int &end, 
 
 	while(!frontier.empty()){
 		it = frontier.begin();
-
+		cout<<"Frontier: "<<frontier.begin()->first<<" "<<frontier.begin()->second<<" 'it': "<<it->first<<" "<<it->second<<endl;
 		cost = it->first;
 		pos = it->second;
 
@@ -77,7 +76,7 @@ void dij(vector<int>& board, vector< vector<int>>& edges, int &start, int &end, 
 				int curr = edges[pos][j];
 				new_dist = cost + board[pos];
 
-				if(new_dist < cost && curr != end){
+				if(new_dist < costs[curr] /*&& curr != end*/){
 //					costs[curr] = cost;					
 					backlink[curr] = pos;
 //					new_dist = cost + board[pos];
