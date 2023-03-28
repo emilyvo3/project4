@@ -71,17 +71,18 @@ void dij(vector<int>& board, vector< vector<int>>& edges, int &start, int &end, 
 			// if the new distance is shorter than the current distance to the neighbor vertex, update its distance
 		
 //			new_dist = 0;
-		if(pos != end){
+//		if(pos != end){
 			for(int j = 0; j < (int) edges[pos].size(); j++){
-				if(board[(pos * r + j)] < costs[pos]){
-					costs[pos] = cost;					
-					backlink[(pos * r + j)] = pos;
-					new_dist = cost + board[pos/*(pos * r + j)*/];
-					frontier.insert(make_pair(new_dist, (pos * r + j))); // add the neighbor to the frontier
+				int curr = (pos * r) + j;
+				if(board[curr] < costs[curr] && curr != end){
+					costs[curr] = cost;					
+					backlink[curr] = pos;
+					new_dist = cost + board[pos];
+					frontier.insert(make_pair(new_dist, curr)); // add the neighbor to the frontier
 
 				}
 			}
-		}	
+//		}	
 
 //				for(int k = 0; k < r; k++){
 
