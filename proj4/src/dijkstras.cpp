@@ -1,6 +1,3 @@
-// dijsktras.cpp
-// Main Execution
-
 #include <iostream>
 #include <climits>
 #include <list>
@@ -15,7 +12,6 @@ using namespace std;
 // so we have two functions: dij and path
 // recurssive function that will return the shortest cost
 
-// pseudocode for now
 void dij(vector<int> &board, vector<vector<int>> &edges, int &start, int &end, int &r)
 {
     vector<int> backlink((r * r), -1);
@@ -70,16 +66,17 @@ void dij(vector<int> &board, vector<vector<int>> &edges, int &start, int &end, i
 
     for (int i = 0; i < (int)path_tiles.size(); i++)
     {
-        // if (path_tiles >= 0 && path_tiles < (int)board.size()) {
+		//cout << path_tiles.size() << endl;
         int row = path_tiles[i] / r;
         int col = path_tiles[i] % r;
-        cout << row << " " << col << endl;
-        //}
-    }
 
-    // int last_row = path_tiles[path_tiles.size() - 1] / r;
-    // int last_col = path_tiles[path_tiles.size() - 1] % r;
-    // cout << last_col << " " << last_row << endl;
+        if (i == (int)path_tiles.size()-1) { 
+            cout << col << " " << row << endl;
+        }
+        else{
+            cout << row << " " << col << endl;
+        }
+    }
 }
 
 int main(int argc, char *argv[])
@@ -145,10 +142,8 @@ int main(int argc, char *argv[])
         // cout<<e1<<" "<<e2<<endl;
         start = (c2 * c) + c1;
         end = (e2 * c) + e1;
-        // cout << start << endl;
-        // cout << end << endl;
 
-        //		cout<<start<<" "<<end<<endl;
+        //cout<<start<<" "<<end<<endl;
         int x, y;
         vector<vector<int>> edges;
         vector<int> index;
@@ -163,43 +158,40 @@ int main(int argc, char *argv[])
 
             // checking for the 4 corners ONLY
             // will have 2 edges
-            // if( (y == 0 && ((x % r) == 0)) || (y == (r - 1) && (((x ) % r) == 0))){
             if ((y == 0 && x == 0) || (y == 0 && x == c - 1) || (y == r - 1 && x == 0) || (y == r - 1 && x == c - 1))
             {
                 index.push_back(i + 1);
                 index.push_back(i + c);
             }
-
             // check the elements adjacent to the corners
             // will have 3 edges
-            else if ((y == 0 /*&& x == 0*/) || (/*y == 0 &&*/ x == 0) || (y == r - 1 /* && x == 0*/) || (y == r - 1 && x == c - 1))
+            else if ((y == 0) || (x == 0) || (y == r - 1) || (y == r - 1 && x == c - 1))
             {
-                if (y == 0 /*&& x == 0*/)
+                if (y == 0)
                 {
                     index.push_back(i + 1);
                     index.push_back(i + c);
                     index.push_back(i - c);
                 }
-                else if (x == 0 /* && x == c - 1*/)
+                else if (x == 0)
                 {
                     index.push_back(i - 1);
                     index.push_back(i + 1);
                     index.push_back(i + c);
                 }
-                else if (y == r - 1 /*&& x == 0*/)
+                else if (y == r - 1)
                 {
                     index.push_back(i - 1);
                     index.push_back(i - c);
                     index.push_back(i + c);
                 }
-                else if (/*y == r - 1 &&*/ x == c - 1)
+                else if (x == c - 1)
                 {
                     index.push_back(i - 1);
                     index.push_back(i + 1);
                     index.push_back(i - c);
                 }
             }
-
             // check for remaining elements
             // will have 4 edges
             else
@@ -220,6 +212,7 @@ int main(int argc, char *argv[])
                     }
                     cout<<endl;
                 }*/
+
         dij(board, edges, start, end, r);
     }
     return 0;
