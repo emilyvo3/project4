@@ -12,8 +12,8 @@ using namespace std;
 // so we have two functions: dij and path
 // recurssive function that will return the shortest cost
 
-void dij(vector<int> &board, vector<vector<int>> &edges, int &start, int &end, int &r)
-{
+void dij(vector<int> &board, vector<vector<int>> &edges, int &start, int &end, int &r){
+
     vector<int> backlink((r * r), -1);
     vector<int> costs((r * r), INT_MAX);
     multimap<int, int> frontier;
@@ -22,30 +22,32 @@ void dij(vector<int> &board, vector<vector<int>> &edges, int &start, int &end, i
 
     int new_dist, cost, pos;
 
-    while (!frontier.empty())
-    {
+    while (!frontier.empty()){
+
         it = frontier.begin();
-        // cout<<"Frontier: "<<frontier.begin()->first<<" "<<frontier.begin()->second<<" 'it': "<<it->first<<" "<<it->second<<endl;
         cost = it->first;
         pos = it->second;
+		
         frontier.erase(it);
 
-        for (int j = 0; j < (int)edges[pos].size(); j++)
-        {
-            // cout << edges[pos].size() << endl;
+
+        for (int j = 0; j < (int)edges[pos].size(); j++){
             int curr = edges[pos][j];
-            if (curr >= 0 && curr < (int)board.size())
-            {
+            if (curr >= 0 && curr < (int)board.size()){
+
                 new_dist = cost + board[pos];
-                if (new_dist < costs[curr] /*&& curr != end*/)
-                {
+
+                if (new_dist < costs[curr] ){                
                     costs[curr] = new_dist;
                     backlink[curr] = pos;
+
                     frontier.insert(make_pair(new_dist, curr)); // add the neighbor to the frontier
                 }
             }
         }
+
     }
+	
 
     cout << costs[end] << endl;
 
@@ -64,16 +66,10 @@ void dij(vector<int> &board, vector<vector<int>> &edges, int &start, int &end, i
 
     for (int i = 0; i < (int)path_tiles.size(); i++)
     {
-		//cout << path_tiles.size() << endl;
         int row = path_tiles[i] / r;
         int col = path_tiles[i] % r;
 
-        if (i == (int)path_tiles.size()-1) { 
-            cout << col << " " << row << endl;
-        }
-        else{
             cout << row << " " << col << endl;
-        }
     }
 }
 
@@ -120,27 +116,9 @@ int main(int argc, char *argv[])
         // reading in start(or current) and end points
         cin >> c1 >> c2 >> e1 >> e2;
 
-        // testing output
+        start = (c1 * c) + c2;
+        end = (e1 * c) + e2;
 
-        /*		cout<<"Testing the input: "<<endl;
-                cout<<ntiles<<endl;
-                for(map<char, int>::iterator i = tiles.begin(); i != tiles.end(); i++){
-                    cout<<i->first<<" "<<i->second<<endl;
-                }
-                cout<<r<<" "<<c<<endl;
-                for(int i = 0; i < r * c; ){
-                    for(int j = 0; j < c; i++, j++){
-                        cout<<board[i]<<" ";
-                    }
-                    cout<<endl;
-                }*/
-
-        // cout<<c1<<" "<<c2<<endl;
-        // cout<<e1<<" "<<e2<<endl;
-        start = (c2 * c) + c1;
-        end = (e2 * c) + e1;
-
-        //cout<<start<<" "<<end<<endl;
         int x, y;
         vector<vector<int>> edges;
         vector<int> index;
@@ -202,13 +180,6 @@ int main(int argc, char *argv[])
             index.clear();
         }
 
-        /*		for(int i = 0; i < (int) edges.size(); i++){
-                    cout<<"Index "<<i<<" has these edges: ";
-                    for(int j = 0; j < (int) edges[i].size(); j++){
-                        cout<<edges[i][j]<<endl;
-                    }
-                    cout<<endl;
-                }*/
 
         dij(board, edges, start, end, r);
     }
