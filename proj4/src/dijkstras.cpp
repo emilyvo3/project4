@@ -126,9 +126,15 @@ void dij(vector<int>& board, vector< vector<int>>& edges, int &start, int &end, 
 			return;
 		}*/
 
-//		cout<<costs[end]<<endl;
+		if (costs[end] == INT_MAX) // if costs vector never updates and still contain
+		{
+			cout << "no path found\n";
+			return;
+		}
 
-		cout<<new_dist<<endl;	
+		cout<<costs[end]<<endl;
+
+		//cout<<new_dist<<endl;	
 
 		vector <int> path_tiles;
 		int current = end; // set the end tile as the current tile
