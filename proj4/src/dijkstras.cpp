@@ -50,7 +50,6 @@ void dij(vector<int> &board, vector<vector<int>> &edges, int &start, int &end, i
     cout << costs[end] << endl;
 
     vector<int> path_tiles;
-    // path_tiles.push_back(end);
     int current = end; // set the end tile as the current tile
 
     // traverse the game board backwards from the end to start tile
@@ -58,7 +57,6 @@ void dij(vector<int> &board, vector<vector<int>> &edges, int &start, int &end, i
     {
         path_tiles.push_back(current); // add the current tile to the path
         current = backlink[current];   // move to the tile that led to the current tile in the shortest path
-                                       // cout << current << endl;
     }
 
     path_tiles.push_back(start);                   // add the start tile to the path
@@ -81,7 +79,6 @@ void dij(vector<int> &board, vector<vector<int>> &edges, int &start, int &end, i
 
 int main(int argc, char *argv[])
 {
-
     int ntiles, tcost, r, c;
     char nametile;
     vector<int> board;
