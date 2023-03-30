@@ -80,8 +80,8 @@ int main(){
 
         }
 
-		start = GetRandom(0, (numbers * numbers) - 1);
-		end = GetRandom(0, (numbers * numbers) - 1);
+		start = 0;
+		end = (numbers * numbers) - 1;
 		fout<<start/numbers<<" "<<start%numbers<<endl;
 		fout<<end/numbers<<" "<<end%numbers<<endl;
 

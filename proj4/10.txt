@@ -5,15 +5,15 @@ h 4
 m 7
 r 5
 10 10
-G r m m g G h m G G
-r G g G f G G f G f
-f G g G f g f m f f
-f f h G m r m g g m
-g m f h r r h r h r
-r h G g f f f m m f
-G h m f r G r G G m
-f h g r m f G G r r
-g m h g h g G h r m
-g G g r G g f r h f
-7 7
-7 7
+g m g m m G G m f m
+m h G r G f h m m G
+f m r f h m m m h G
+h m m m f f r g m h
+r G f r g f h h m G
+h m m h r g g h m m
+h g f g h g g G G f
+h r f G m f G G g g
+G m r f g G f f m m
+m g h r h f m G g m
+0 0
+9 9

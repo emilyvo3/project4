@@ -5,25 +5,25 @@ h 4
 m 7
 r 5
 20 20
-h G m f G f G r f g G g h h G r g g h f
-h h m r G G m h G f m h f h h g g r f g
-g f G m m m g h f G h g r r g g g h m h
-g g g G G m h h G g h h G r r f G f g G
-G m h f G G g h f m r r h f g h G m m m
-m g r f r G m g G r g h g G h h r G g h
-m m G r m G f m m r g G f f G h h m m h
-h h m h f r f h f r f G h f G r G f m g
-r h g m h m g m G m f m g G r g G r G f
-h G G m g G G g h m f f g G m G m m r m
-f h G g r g g r r h h f m f G h f m m g
-G r G g r m m h G h g f m G G g g g g m
-G m m m G g g h h f m m h m r G h h h h
-m G m G m m m m r h G r r r m G m r h g
-h r r f m r f r f h G h f f h G G r m g
-G g r f m h f G G h g f f r m G G r g G
-f m r m G g r r f h m g G h g f m g f r
-G G r f g g h h f m h r f g h g G G m G
-m G g f m G g G h g g h g m m G m g h G
-h r g G m h g f h r f g r G G h G h m m
-0 16
-17 1
+G m h h f g g g g G G g f r G f G f f f
+m r g g G G r f r f m g h r G g m g G m
+h G r G G r G m r G G g r h G r m G h h
+f g G h m h h h m r g f G f G G m m f h
+m f r m g r g r r r G m m h r h f G f m
+f r m G h m m g G G h r G f g g r G g h
+g g g f m f h m g g g g m h g g G r g m
+r m h r m m f g r r G f g g m r f g G g
+f h G m f h m G f r r h h f f r h f m G
+m g G r G g m G f f g r g h h G m g G G
+m g r g G h m r G h g f G g r G f g h r
+f m m g f r g G r m r h h G r r f g G G
+G g G m h r r g m G f m m m m m G h g g
+g m m r m g G m h r m h f m f g g r h f
+r g G h m f f f m g g h h r f g r g m f
+f f h m h h m m G g G g f r h m h h m r
+G h g r g g m f G f f f g h h G r g f g
+f h g f f m r h g g g g h G f m h G G m
+h G G G h h m G G m G G r g g h h m g G
+r G h G G g m h h f g f f G G m h f m f
+0 0
+19 19
