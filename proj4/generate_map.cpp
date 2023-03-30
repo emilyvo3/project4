@@ -70,18 +70,21 @@ int main(){
 
         for(int i = 0; i < numbers; i++){
             for(int j = 0; j < numbers - 1; j++){
-				randnum = GetRandom(0, (int) tiles.size());
+				randnum = GetRandom(0, (int) tiles.size() - 1);
 		        fout<<tiles[randnum]<<" ";
 			}	
 
-			randnum = GetRandom(0, (int) tiles.size());
+			randnum = GetRandom(0, (int) tiles.size() - 1);
             fout<<tiles[randnum]<<endl;
+
 
         }
 
-		start = GetRandom(0, (numbers * numbers));
-		end = GetRandom(0, (numbers * numbers));
-		fout<<start<<" "<<end<<endl;
+		start = GetRandom(0, (numbers * numbers) - 1);
+		end = GetRandom(0, (numbers * numbers) - 1);
+		fout<<start/numbers<<" "<<start%numbers<<endl;
+		fout<<end/numbers<<" "<<end%numbers<<endl;
+
 
         //close output file
         fout.close();
@@ -89,8 +92,8 @@ int main(){
     }
      //close statements
     fin.close();
-//  fout.close();
-    return 0;
+    
+	return 0;
 }
 
 int GetRandom(int min, int max){
