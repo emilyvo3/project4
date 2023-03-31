@@ -14,29 +14,29 @@ int main(){
 	srand(time(0));
 
 
-    ifstream fin;
+//    ifstream fin;
     ofstream fout;
     int numbers, randnum = 0, start = 0, end = 0;
-    string filename, ofilename;
-	
+    string ofilename;
+	int ntiles = 6;
 	vector<char> tiles = {'f', 'g', 'G', 'h', 'm', 'r'};
 	vector<int> cost = {3, 1, 2, 4, 7, 5};
 
-    filename = "num.txt";
+/*    filename = "num.txt";
     fin.open(filename);
     if(!fin.is_open()){
         cout<<"Could not open file. Ceck permissions or filename.\n";
         return 1;
-    }
+    }*/
 
 
     /*Create an output file to place newly formatte data */
 	
 	//10, 20, 50, 100, 200, 500, 1000
-    while(fin>>numbers){
+//    while(fin>>numbers){
         //open output file
 
-		switch(numbers){
+/*		switch(numbers){
 			case 10:
                 ofilename = "10.txt";
                 break;
@@ -58,9 +58,14 @@ int main(){
             case 1000:
                 ofilename = "1000.txt";
                 break;
-        }
+        }*/
+		
+		cin>>numbers;	
 
+		ofilename = "map.txt";
         fout.open(ofilename);
+
+		fout<<ntiles<<endl;
 
 		for(int i = 0; i < (int) tiles.size(); i++){
 			fout<<tiles[i]<< " " << cost[i]<<endl;
@@ -89,9 +94,9 @@ int main(){
         //close output file
         fout.close();
 
-    }
+  //  }
      //close statements
-    fin.close();
+   // fin.close();
     
 	return 0;
 }
