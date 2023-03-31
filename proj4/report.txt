@@ -1,0 +1,20 @@
+Emily Vo
+
+My Contributions:
+In the dij() function, I wrote the sections that involve path finding and printing out the path tiles. I also did some debugging involving checking the indexes of the board in the main function. 
+The rest of the time I discuss with Dhwani about the program and how to approach each requirement in the writeup. 
+
+Writeup Questions:
+
+1. We used adjacency matrices to achieve this. So the outer vector will have n x n elements (board size), which allows us to easily access each element of the board. 
+Each index of the outer vector is a vector<int>, which will hold the existing edges for that element. While reading in our board, we store them as their weights, 
+hence we have a vector<int> storing our board.
+
+
+2. The data structures implemented in this program include maps and vectors. For path finding, we used vectors to achieve this by creating a vector of the tiles path, 
+and setting the end tile to the current index of the player. Then we traverse the board backwards from that end tile to the start tile to obtain the vector of the 
+backlink path as we add the current tile to the tiles path vector. Therefore, the complexity of our algorithm is log(n) for the map and O(1) for the vector.
+
+
+3. The larger the input N, the longer it takes for the program to execute, as well as a gradual increase of memory usage. However, the performance is still fast for 
+each of these considering that the longest elapsed time is 1.126s for a 1000 x 1000 board map. 
